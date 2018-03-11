@@ -16,15 +16,21 @@ function createWindow () {
   mainWindow = new BrowserWindow({width: 1280, height: 800})
   mainWindow.setMenu(null);
 
-  const startUrl = "http://localhost:3000" || url.format({
-    pathname: path.join(__dirname, '/../build/index.html'),
-    protocol: 'file:',
-    slashes: true
-  });
+  let startUrl;
+
+  if(process.env.NODE_ENV === 'production'){
+    startUrl = "http://localhost:3000";
+  }else{
+    startUrl = url.format({
+      pathname: path.join(__dirname, '/../build/index.html'),
+      protocol: 'file:',
+      slashes: true
+    });
+  }  
   mainWindow.loadURL(startUrl);
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {

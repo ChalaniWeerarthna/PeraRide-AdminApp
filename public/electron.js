@@ -4,6 +4,8 @@ const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
 
+const isDev = require('electron-is-dev');
+
 const path = require('path')
 const url = require('url')
 
@@ -18,7 +20,7 @@ function createWindow () {
 
   let startUrl;
 
-  if(process.env.NODE_ENV === 'production'){
+  if(isDev){
     startUrl = "http://localhost:3000";
   }else{
     startUrl = url.format({

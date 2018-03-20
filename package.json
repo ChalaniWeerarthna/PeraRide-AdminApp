@@ -16,10 +16,15 @@
     "react-chartist": "^0.13.1",
     "react-dom": "^16.2.0",
     "react-google-maps": "^9.4.5",
+    "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
+    "react-router-redux": "^4.0.8",
     "react-scripts": "1.0.17",
-    "react-swipeable-views": "^0.12.12"
+    "react-swipeable-views": "^0.12.12",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   },
+  "proxy":"http://localhost:8080/PeraRide/v1",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

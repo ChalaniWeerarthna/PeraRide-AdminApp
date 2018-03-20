@@ -17,11 +17,11 @@ import logo from "assets/img/reactlogo.png";
 
 const switchRoutes = (
   <Switch>
-    {appRoutes.map((prop, key) => {
-      if (prop.redirect)
-        return <Redirect from={prop.path} to={prop.to} key={key} />;
-      return <Route path={prop.path} component={prop.component} key={key} />;
-    })}
+      {appRoutes.map((prop, key) => {
+        if (prop.redirect)
+          return <Redirect from={prop.path} to={prop.to} key={key} />;
+        return <Route path={prop.path} component={prop.component} key={key} />;
+      })}
   </Switch>
 );
 

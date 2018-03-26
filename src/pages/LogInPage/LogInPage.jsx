@@ -14,7 +14,7 @@ import {
 class LogInPage extends React.Component {  
   constructor(props) {
     super(props);
-    this.state = {credentials: {email: '', password: ''}}
+    this.state = {credentials: {email: '', password: ''},successValidation: true}
     this.onChange = this.onChange.bind(this);
     this.onSave = this.onSave.bind(this);
   }
@@ -22,15 +22,25 @@ class LogInPage extends React.Component {
   onChange(event) {
     const field = event.target.name;
     const credentials = this.state.credentials;
-    credentials[field] = event.target.value;
-    console.log(event.target.name,event.target.value);
-    
+    credentials[field] = event.target.value;    
     return this.setState({credentials: credentials});
   }
 
   onSave(event) {
-    event.preventDefault();
-    this.props.actions.logInUser(this.state.credentials);
+    if(this.isValid()){
+      event.preventDefault();
+      this.props.actions.logInUser(this.state.credentials);
+    }else{
+      this.setState({successValidation: false});
+    }
+  }
+
+  isValid = () =>{
+    const {credentials} = this.state;
+    if(credentials.email === '' && credentials.password === ''){
+      return false;
+    }
+    return true;
   }
 
   render() {
@@ -51,6 +61,7 @@ class LogInPage extends React.Component {
                     <ItemGrid md={12}>
                       <CustomInput
                         labelText="Username"
+                        error={this.state.successValidation ? '':'true'}
                         formControlProps={{
                           fullWidth: true
                         }}
@@ -66,6 +77,7 @@ class LogInPage extends React.Component {
                     <ItemGrid md={12}>
                       <CustomInput
                         labelText="Password"
+                        error={this.state.successValidation ? '':'true'}                        
                         formControlProps={{
                           fullWidth: true
                         }}

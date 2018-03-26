@@ -7,14 +7,20 @@ import {
   RegularCard,
   CustomInput,
   ItemGrid,
-  Button
+  Button,
+  Snackbar
 } from "components";
+import { Fingerprint } from "material-ui-icons";
+
 
 
 class LogInPage extends React.Component {  
   constructor(props) {
     super(props);
-    this.state = {credentials: {email: '', password: ''},successValidation: true}
+    this.state = {
+      credentials: {email: '', password: ''},
+      successValidation: true
+    }
     this.onChange = this.onChange.bind(this);
     this.onSave = this.onSave.bind(this);
   }
@@ -32,7 +38,7 @@ class LogInPage extends React.Component {
       this.props.actions.logInUser(this.state.credentials);
     }else{
       this.setState({successValidation: false});
-    }
+    }        
   }
 
   isValid = () =>{
@@ -46,12 +52,22 @@ class LogInPage extends React.Component {
   render() {
     return (
       < div >
+      
         <Grid 
           container 
           justify='center'
           alignItems='center'
           style={{height: 600}}>
           <ItemGrid >
+            <Snackbar
+               place="tc"
+               color="danger"
+               icon = {Fingerprint}
+               message={this.props.session.message}
+               open={this.props.session.failNotification}
+               closeNotification={() => this.props.actions.clearAlertNotification()}
+               close
+                    />
             <RegularCard
               cardTitle="Admin Login"
               cardSubtitle="Enter your username and password"
@@ -61,7 +77,7 @@ class LogInPage extends React.Component {
                     <ItemGrid md={12}>
                       <CustomInput
                         labelText="Username"
-                        error={this.state.successValidation ? false:true}
+                        error={!this.state.successValidation}   
                         formControlProps={{
                           fullWidth: true
                         }}
@@ -77,7 +93,7 @@ class LogInPage extends React.Component {
                     <ItemGrid md={12}>
                       <CustomInput
                         labelText="Password"
-                        error={this.state.successValidation ? false:true}                        
+                        error={!this.state.successValidation}          
                         formControlProps={{
                           fullWidth: true
                         }}
@@ -111,9 +127,16 @@ class LogInPage extends React.Component {
   }
 }
 
+const mapStateToProps = (state) =>
+  {
+    return{
+      session: state.session
+    }
+  }
+
 function mapDispatchToProps(dispatch) {  
   return {
     actions: bindActionCreators(sessionActions, dispatch)
   };
 }
-export default connect(null, mapDispatchToProps)(LogInPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LogInPage);

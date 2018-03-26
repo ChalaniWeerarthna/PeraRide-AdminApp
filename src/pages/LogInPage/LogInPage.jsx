@@ -61,7 +61,7 @@ class LogInPage extends React.Component {
                     <ItemGrid md={12}>
                       <CustomInput
                         labelText="Username"
-                        error={this.state.successValidation ? '':'true'}
+                        error={this.state.successValidation ? false:true}
                         formControlProps={{
                           fullWidth: true
                         }}
@@ -77,7 +77,7 @@ class LogInPage extends React.Component {
                     <ItemGrid md={12}>
                       <CustomInput
                         labelText="Password"
-                        error={this.state.successValidation ? '':'true'}                        
+                        error={this.state.successValidation ? false:true}                        
                         formControlProps={{
                           fullWidth: true
                         }}

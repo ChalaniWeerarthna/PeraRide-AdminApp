@@ -1,5 +1,5 @@
 import DashboardPage from "views/Dashboard/Dashboard.jsx";
-import UserProfile from "views/UserProfile/UserProfile.jsx";
+import Users from "views/Users/Users.jsx";
 import Docks from "views/Docks/Docks.jsx";
 import Typography from "views/Typography/Typography.jsx";
 import Maps from "views/Maps/Maps.jsx";
@@ -27,9 +27,9 @@ const appRoutes = [
   {
     path: "/user",
     sidebarName: "Users",
-    navbarName: "Profile",
+    navbarName: "Users",
     icon: Person,
-    component: UserProfile
+    component: Users
   },
   {
     path: "/docks",

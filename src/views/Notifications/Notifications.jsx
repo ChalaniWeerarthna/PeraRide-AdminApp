@@ -154,7 +154,7 @@ class Notifications extends React.Component {
                       place="tl"
                       color="info"
                       icon={AddAlert}
-                      message="Welcome to MATERIAL DASHBOARD React - a beautiful freebie for every web developer."
+                      message="helloooo"
                       open={this.state.tl}
                       closeNotification={() => this.setState({ tl: false })}
                       close
@@ -172,7 +172,7 @@ class Notifications extends React.Component {
                       place="tc"
                       color="success"
                       icon={AddAlert}
-                      message="Welcome to MATERIAL DASHBOARD React - a beautiful freebie for every web developer."
+                      message="sasasasa "
                       open={this.state.tc}
                       closeNotification={() => this.setState({ tc: false })}
                       close

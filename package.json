@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "author": "Shyaman Jayasundara",
   "private": true,
-  "main": "public/main.js",
+  "main": "public/electron.js",
   "dependencies": {
     "chartist": "^0.10.1",
     "classnames": "^2.2.5",
+    "electron-is-dev": "^0.3.0",
     "material-ui": "1.0.0-beta.34",
     "material-ui-icons": "1.0.0-beta.17",
     "npm-run-all": "^4.1.1",
@@ -15,10 +16,15 @@
     "react-chartist": "^0.13.1",
     "react-dom": "^16.2.0",
     "react-google-maps": "^9.4.5",
+    "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
+    "react-router-redux": "^4.0.8",
     "react-scripts": "1.0.17",
-    "react-swipeable-views": "^0.12.12"
+    "react-swipeable-views": "^0.12.12",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   },
+  "proxy":"http://localhost:8080/PeraRide/v1",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -26,11 +32,12 @@
     "eject": "react-scripts eject",
     "electron": "electron .",
     "dev": "concurrently \"yarn start\" \"wait-on http://localhost:3000/ && yarn electron\"",
-    "electron-pack": "build --em.main=build/main.js",
+    "electron-pack": "build — em.main=build/electron.js",
     "preelectron-pack": "yarn build"
   },
   "homepage": "./",
   "devDependencies": {
+    "concurrently": "^3.5.1",
     "electron": "^1.8.3",
     "electron-builder": "^20.4.1",
     "wait-on": "^2.1.0"
@@ -42,7 +49,7 @@
       "node_modules/**/*"
     ],
     "directories": {
-      "buildResources": "assets"
+      "buildResources": "src/assets"
     }
   }
 }

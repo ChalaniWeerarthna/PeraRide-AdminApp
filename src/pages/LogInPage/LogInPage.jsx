@@ -44,7 +44,7 @@ class LogInPage extends React.Component {
 
   isValid = () =>{
     const {credentials} = this.state;
-    if(credentials.email === '' && credentials.password === ''){
+    if(credentials.email === '' || credentials.password === ''){
       return false;
     }
     return true;

@@ -15,6 +15,18 @@ class RiderApi {
         throw error;
       });
     } 
+
+    static getAll() {
+      const request = new Request('/users/rider', {
+        method: 'GET'        
+      });
+  
+      return fetch(request).then(response => { 
+        return response.json();
+      }).catch(error => {
+        throw error;
+      });
+    } 
   }
   
   export default RiderApi;  

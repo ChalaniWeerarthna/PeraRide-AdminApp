@@ -1,4 +1,5 @@
 export default {  
-    notification: {failNotification: false, message:''}
+    notification: {isNotify: false, message:'', color:'primary'},
+    rider: {riders:[]}
 }
   

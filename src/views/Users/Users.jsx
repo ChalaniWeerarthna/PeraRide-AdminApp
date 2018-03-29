@@ -3,20 +3,18 @@ import { Grid } from "material-ui";
 import {connect} from 'react-redux';  
 import {bindActionCreators} from 'redux';  
 import * as riderActions from 'actions/riderActions';
+import * as notificationActions from 'actions/notificationActions';
 
 
 import {
-  ProfileCard,
   RegularCard,
   CustomInput,
   ItemGrid,
   Button,
-  Snackbar
+  Snackbar,
+  Table
 } from "components";
 
-import { Fingerprint } from "material-ui-icons";
-
-import avatar from "assets/img/faces/marc.jpg";
 
 class Users extends React.Component {
 
@@ -40,15 +38,26 @@ class Users extends React.Component {
   onSave(event) {
     if(this.isValid()){
       event.preventDefault();
-      this.props.actions.addRider(this.state.details);
+      this.props.riderActions.addRider(this.state.details);
+      this.setState({details: {regNo:'', phoneNo:''}})
+      setTimeout(
+        function() {
+          this.props.notificationActions.clearAlertNotification()
+        }.bind(this),
+        6000
+      );
     }else{
       this.setState({successValidation: false});
     }        
   }
 
+  componentWillMount() {
+    this.props.riderActions.getRiders();
+  }
+
   isValid = () =>{
     const {details} = this.state;
-    if(details.regNo === '' && details.phoneNo === ''){
+    if(details.regNo === '' || details.phoneNo === ''){
       return false;
     }
     return true;
@@ -57,8 +66,17 @@ class Users extends React.Component {
   render(){
     return (
       <div>
+        <Snackbar
+               place="tc"
+               color={this.props.notification.color}
+               icon = {this.props.notification.icon}
+               message={this.props.notification.message}
+               open={this.props.notification.isNotify}
+               closeNotification={() => this.props.notificationActions.clearAlertNotification()}
+               close
+                    />
         <Grid container>
-          <ItemGrid xs={12} sm={12} md={8}>
+          <ItemGrid xs={12} sm={12} md={4}>
               <RegularCard
                 cardTitle="Add new rider"
                 cardSubtitle="Enter rider details"
@@ -112,15 +130,19 @@ class Users extends React.Component {
                 }
               />
           </ItemGrid>
-          <ItemGrid xs={12} sm={12} md={4}>
-            <ProfileCard
-              avatar={avatar}
-              subtitle="CEO / CO-FOUNDER"
-              title="Alec Thompson"
-              description="Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is..."
-              
+          <ItemGrid xs={12} sm={12} md={8}>
+        <RegularCard
+          cardTitle="Users"
+          cardSubtitle="User Details"
+          content={
+            <Table
+              tableHeaderColor="primary"
+              tableHead={["Registration number", "Phone number"]}
+              tableData={this.props.rider.riders}
             />
-          </ItemGrid>
+          }
+        />
+      </ItemGrid>
         </Grid>
       </div>
     );
@@ -130,13 +152,15 @@ class Users extends React.Component {
 const mapStateToProps = (state) =>
   {
     return{
-      session: state.session
+      rider: state.rider,
+      notification: state.notification
     }
   }
 
 function mapDispatchToProps(dispatch) {  
   return {
-    actions: bindActionCreators(riderActions, dispatch)
+    riderActions: bindActionCreators(riderActions, dispatch),
+    notificationActions: bindActionCreators(notificationActions, dispatch)    
   };
 }
 

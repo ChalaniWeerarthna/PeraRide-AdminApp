@@ -17,15 +17,15 @@ import {
 } from "material-ui-icons";
 
 const appRoutes = [
+  // {
+  //   path: "/dashboard",
+  //   sidebarName: "Dashboard",
+  //   navbarName: "Material Dashboard",
+  //   icon: Dashboard,
+  //   component: DashboardPage
+  // },
   {
-    path: "/dashboard",
-    sidebarName: "Dashboard",
-    navbarName: "Material Dashboard",
-    icon: Dashboard,
-    component: DashboardPage
-  },
-  {
-    path: "/user",
+    path: "/users",
     sidebarName: "Users",
     navbarName: "Users",
     icon: Person,
@@ -45,28 +45,28 @@ const appRoutes = [
     icon: DirectionsBike,
     component: Bikes
   },
-  {
-    path: "/typography",
-    sidebarName: "Typography",
-    navbarName: "Typography",
-    icon: LibraryBooks,
-    component: Typography
-  },
-  {
-    path: "/map",
-    sidebarName: "Docks Map",
-    navbarName: "Docks Map",
-    icon: LocationOn,
-    component: Maps
-  },
-  {
-    path: "/notifications",
-    sidebarName: "Notifications",
-    navbarName: "Notifications",
-    icon: Notifications,
-    component: NotificationsPage
-  },
-  { redirect: true, path: "/", to: "/dashboard", navbarName: "Redirect" }
+  // {
+  //   path: "/typography",
+  //   sidebarName: "Typography",
+  //   navbarName: "Typography",
+  //   icon: LibraryBooks,
+  //   component: Typography
+  // },
+  // {
+  //   path: "/map",
+  //   sidebarName: "Docks Map",
+  //   navbarName: "Docks Map",
+  //   icon: LocationOn,
+  //   component: Maps
+  // },
+  // {
+  //   path: "/notifications",
+  //   sidebarName: "Notifications",
+  //   navbarName: "Notifications",
+  //   icon: Notifications,
+  //   component: NotificationsPage
+  // },
+  { redirect: true, path: "/", to: "/users", navbarName: "Redirect" }
 ];
 
 export default appRoutes;

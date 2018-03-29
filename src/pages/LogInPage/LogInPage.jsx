@@ -1,7 +1,8 @@
 import React from 'react';  
 import {bindActionCreators} from 'redux';  
 import {connect} from 'react-redux';  
-import * as sessionActions from 'actions/sessionActions';
+import  * as sessionActions from 'actions/sessionActions';
+import * as notificationActions from 'actions/notificationActions';
 import { Grid } from "material-ui";
 import {
   RegularCard,
@@ -35,7 +36,7 @@ class LogInPage extends React.Component {
   onSave(event) {
     if(this.isValid()){
       event.preventDefault();
-      this.props.actions.logInUser(this.state.credentials);
+      this.props.sessionActions.logInUser(this.state.credentials);
     }else{
       this.setState({successValidation: false});
     }        
@@ -63,9 +64,9 @@ class LogInPage extends React.Component {
                place="tc"
                color="danger"
                icon = {Fingerprint}
-               message={this.props.session.message}
-               open={this.props.session.failNotification}
-               closeNotification={() => this.props.actions.clearAlertNotification()}
+               message={this.props.notification.message}
+               open={this.props.notification.failNotification}
+               closeNotification={() => this.props.notificationActions.clearAlertNotification()}
                close
                     />
             <RegularCard
@@ -130,13 +131,14 @@ class LogInPage extends React.Component {
 const mapStateToProps = (state) =>
   {
     return{
-      session: state.session
+      notification: state.notification
     }
   }
 
 function mapDispatchToProps(dispatch) {  
   return {
-    actions: bindActionCreators(sessionActions, dispatch)
+    sessionActions: bindActionCreators(sessionActions, dispatch),
+    notificationActions: bindActionCreators(notificationActions, dispatch)    
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(LogInPage);

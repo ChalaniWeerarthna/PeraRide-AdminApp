@@ -6,9 +6,6 @@ const loginFail = (message) => {
   return {type: types.LOG_IN_FAIL, message: message}
 }
 
-const clearAlert = () => {
-  return {type: types.CLEAR_ALERT}
-}
 
 export function logInUser(credentials) {  
   return function(dispatch) {
@@ -24,10 +21,4 @@ export function logInUser(credentials) {
       dispatch(loginFail("Problem with connection!"));
     });
   };
-}
-
-export const clearAlertNotification = () =>{
-  return (dispatch) =>{
-    dispatch(clearAlert())
-  }
 }

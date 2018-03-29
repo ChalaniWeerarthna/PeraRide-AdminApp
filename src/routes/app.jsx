@@ -1,18 +1,18 @@
-import DashboardPage from "views/Dashboard/Dashboard.jsx";
+// import DashboardPage from "views/Dashboard/Dashboard.jsx";
 import Users from "views/Users/Users.jsx";
 import Docks from "views/Docks/Docks.jsx";
-import Typography from "views/Typography/Typography.jsx";
-import Maps from "views/Maps/Maps.jsx";
-import NotificationsPage from "views/Notifications/Notifications.jsx";
+// import Typography from "views/Typography/Typography.jsx";
+// import Maps from "views/Maps/Maps.jsx";
+// import NotificationsPage from "views/Notifications/Notifications.jsx";
 import Bikes from "views/Bikes/Bikes.jsx";
 
 import {
-  Dashboard,
+  // Dashboard,
   Person,
   BeachAccess,
-  LibraryBooks,
-  LocationOn,
-  Notifications,
+  // LibraryBooks,
+  // LocationOn,
+  // Notifications,
   DirectionsBike
 } from "material-ui-icons";
 

@@ -20,7 +20,7 @@ export function addRider(details) {
 
           if(response.riders){
             const res = response.riders.map((obj) => {
-              return [obj.rider_regNo, obj.rider_phoneNo]
+              return [obj.rider_regNo,obj.rider_name.fName,obj.rider_name.lName, obj.rider_phoneNo, obj.rider_email]
             });        
             dispatch(updateRiders(res));        
           }else{        
@@ -45,7 +45,7 @@ export function getRiders() {
 
       if(response.riders){
         const res = response.riders.map((obj) => {
-          return [obj.rider_regNo, obj.rider_phoneNo]
+          return [obj.rider_regNo,obj.rider_name.fName,obj.rider_name.lName, obj.rider_phoneNo, obj.rider_email]
         });        
         dispatch(updateRiders(res));        
       }else{        

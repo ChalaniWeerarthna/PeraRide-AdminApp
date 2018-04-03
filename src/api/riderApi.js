@@ -5,7 +5,11 @@ class RiderApi {
         headers: new Headers({
           'Content-Type': 'application/json'
         }), 
-        body: JSON.stringify({rider_regNo : details.regNo, rider_phoneNo: details.phoneNo})
+        body: JSON.stringify({rider_regNo : details.regNo,
+          rider_phoneNo: details.phoneNo,
+          rider_name:{fName: details.fName, lName: details.lName},
+          rider_email: details.email
+        })
       });
   
   

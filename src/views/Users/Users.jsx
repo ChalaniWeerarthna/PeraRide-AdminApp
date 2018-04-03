@@ -21,7 +21,7 @@ class Users extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      details: {regNo: '', phoneNo: ''},
+      details: {regNo: '', phoneNo: '',fName: '', lName: '', email: ''},
       successValidation: true
     }
     this.onChange = this.onChange.bind(this);
@@ -31,7 +31,7 @@ class Users extends React.Component {
   onChange(event) {
     const field = event.target.name;
     const details = this.state.details;
-    details[field] = event.target.value;    
+    details[field] = event.target.value;        
     return this.setState({details: details});
   }
 
@@ -39,7 +39,7 @@ class Users extends React.Component {
     if(this.isValid()){
       event.preventDefault();
       this.props.riderActions.addRider(this.state.details);
-      this.setState({details: {regNo:'', phoneNo:''}})
+      this.setState({regNo: '', phoneNo: '',fName: '', lName: '', email: ''})
       setTimeout(
         function() {
           this.props.notificationActions.clearAlertNotification()
@@ -56,8 +56,9 @@ class Users extends React.Component {
   }
 
   isValid = () =>{
-    const {details} = this.state;
-    if(details.regNo === '' || details.phoneNo === ''){
+    const {regNo,phoneNo,fName,lName,email} = this.state.details;
+    if(regNo === '' || phoneNo === '' ||
+     fName === '' || lName === '' || email === ''){
       return false;
     }
     return true;
@@ -76,7 +77,7 @@ class Users extends React.Component {
                close
                     />
         <Grid container>
-          <ItemGrid xs={12} sm={12} md={4}>
+          <ItemGrid xs={12} sm={12} md={5}>
               <RegularCard
                 cardTitle="Add new rider"
                 cardSubtitle="Enter rider details"
@@ -93,6 +94,52 @@ class Users extends React.Component {
                           inputProps={{
                             name: "regNo",
                             value: this.state.details.regNo,
+                            onChange: this.onChange
+                          }}
+                        />
+                      </ItemGrid>
+                    </Grid>
+                    <Grid container>
+                      <ItemGrid md={6}>
+                        <CustomInput
+                          labelText="First Name"
+                          error={!this.state.successValidation}   
+                          formControlProps={{
+                            fullWidth: true
+                          }}
+                          inputProps={{
+                            name: "fName",
+                            value: this.state.details.fName,
+                            onChange: this.onChange
+                          }}
+                        />
+                      </ItemGrid>
+                      <ItemGrid md={6}>
+                        <CustomInput
+                          labelText="Last Name"
+                          error={!this.state.successValidation}   
+                          formControlProps={{
+                            fullWidth: true
+                          }}
+                          inputProps={{
+                            name: "lName",
+                            value: this.state.details.lName,
+                            onChange: this.onChange
+                          }}
+                        />
+                      </ItemGrid>
+                    </Grid>
+                    <Grid container>
+                      <ItemGrid md={12}>
+                        <CustomInput
+                          labelText="Email address"
+                          error={!this.state.successValidation}   
+                          formControlProps={{
+                            fullWidth: true
+                          }}
+                          inputProps={{
+                            name: "email",
+                            value: this.state.details.email,
                             onChange: this.onChange
                           }}
                         />
@@ -130,14 +177,14 @@ class Users extends React.Component {
                 }
               />
           </ItemGrid>
-          <ItemGrid xs={12} sm={12} md={8}>
+          <ItemGrid xs={12} sm={12} md={7}>
         <RegularCard
           cardTitle="Users"
           cardSubtitle="User Details"
           content={
             <Table
               tableHeaderColor="primary"
-              tableHead={["Registration number", "Phone number"]}
+              tableHead={["Registration number","First Name","Last Name", "Phone number","Email"]}
               tableData={this.props.rider.riders}
             />
           }

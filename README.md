@@ -1,4 +1,5 @@
 # PeraRide-AdminApp
+[![Build Status](https://travis-ci.org/shyaman/PeraRide-AdminApp.svg?branch=master)](https://travis-ci.org/shyaman/PeraRide-AdminApp)
 
 ### How to run
 

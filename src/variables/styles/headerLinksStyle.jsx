@@ -94,7 +94,7 @@ const headerLinksStyle = theme => ({
     boxShadow: "0 2px 5px 0 rgba(0, 0, 0, 0.26)",
     top: "100%",
     zIndex: "1000",
-    minWidth: "160px",
+    minWidth: "100px",
     padding: "5px 0",
     margin: "2px 0 0",
     fontSize: "14px",
@@ -118,7 +118,7 @@ const headerLinksStyle = theme => ({
   },
   dropdownItem: {
     ...defaultFont,
-    fontSize: "13px",
+    fontSize: "15px",
     padding: "10px 20px",
     margin: "0 5px",
     borderRadius: "2px",

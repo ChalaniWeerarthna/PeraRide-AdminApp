@@ -22,3 +22,10 @@ export function logInUser(credentials) {
     });
   };
 }
+
+export function logoutUser(credentials) {  
+  return function(dispatch) {
+    localStorage.removeItem('jwt');    
+    dispatch(push('/'));
+  };
+}

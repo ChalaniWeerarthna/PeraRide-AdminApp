@@ -1,6 +1,9 @@
 import React from "react";
 import classNames from "classnames";
+import {bindActionCreators} from 'redux';  
 import { Manager, Target, Popper } from "react-popper";
+import {connect} from 'react-redux';  
+import  * as sessionActions from 'actions/sessionActions';
 import {
   withStyles,
   IconButton,
@@ -11,7 +14,7 @@ import {
   ClickAwayListener,
   Hidden
 } from "material-ui";
-import { Person, Notifications, Dashboard, Search } from "material-ui-icons";
+import { Person, Dashboard, Search } from "material-ui-icons";
 
 import { CustomInput, IconButton as SearchButton } from "components";
 
@@ -19,18 +22,24 @@ import headerLinksStyle from "variables/styles/headerLinksStyle";
 
 class HeaderLinks extends React.Component {
   state = {
-    open: false
-  };
-  handleClick = () => {
-    this.setState({ open: !this.state.open });
+    openLogout: false
   };
 
-  handleClose = () => {
-    this.setState({ open: false });
+  onClick = () =>{
+    this.props.sessionActions.logoutUser();
+  }
+
+  handleLogoutClick = () => {
+    this.setState({ openLogout: !this.state.openLogout });
   };
+
+  handleLogoutClose = () => {
+    this.setState({ openLogout: false });
+  };
+
   render() {
     const { classes } = this.props;
-    const { open } = this.state;
+    const { openLogout } = this.state;
     return (
       <div>
         <CustomInput
@@ -62,80 +71,13 @@ class HeaderLinks extends React.Component {
           </Hidden>
         </IconButton>
         <Manager style={{ display: "inline-block" }}>
-          <Target>
-            <IconButton
-              color="inherit"
-              aria-label="Notifications"
-              aria-owns={open ? "menu-list" : null}
-              aria-haspopup="true"
-              onClick={this.handleClick}
-              className={classes.buttonLink}
-            >
-              <Notifications className={classes.links} />
-              <span className={classes.notifications}>5</span>
-              <Hidden mdUp>
-                <p onClick={this.handleClick} className={classes.linkText}>
-                  Notification
-                </p>
-              </Hidden>
-            </IconButton>
-          </Target>
-          <Popper
-            placement="bottom-start"
-            eventsEnabled={open}
-            className={
-              classNames({ [classes.popperClose]: !open }) +
-              " " +
-              classes.pooperResponsive
-            }
-          >
-            <ClickAwayListener onClickAway={this.handleClose}>
-              <Grow
-                in={open}
-                id="menu-list"
-                style={{ transformOrigin: "0 0 0" }}
-              >
-                <Paper className={classes.dropdown}>
-                  <MenuList role="menu">
-                    <MenuItem
-                      onClick={this.handleClose}
-                      className={classes.dropdownItem}
-                    >
-                      Mike John responded to your email
-                    </MenuItem>
-                    <MenuItem
-                      onClick={this.handleClose}
-                      className={classes.dropdownItem}
-                    >
-                      You have 5 new tasks
-                    </MenuItem>
-                    <MenuItem
-                      onClick={this.handleClose}
-                      className={classes.dropdownItem}
-                    >
-                      You're now friend with Andrew
-                    </MenuItem>
-                    <MenuItem
-                      onClick={this.handleClose}
-                      className={classes.dropdownItem}
-                    >
-                      Another Notification
-                    </MenuItem>
-                    <MenuItem
-                      onClick={this.handleClose}
-                      className={classes.dropdownItem}
-                    >
-                      Another One
-                    </MenuItem>
-                  </MenuList>
-                </Paper>
-              </Grow>
-            </ClickAwayListener>
-          </Popper>
-        </Manager>
+        <Target>
         <IconButton
           color="inherit"
           aria-label="Person"
+          aria-haspopup="true" 
+          onClick={this.handleLogoutClick}          
+          aria-owns={openLogout ? "logout" : null}                   
           className={classes.buttonLink}
         >
           <Person className={classes.links} />
@@ -143,9 +85,45 @@ class HeaderLinks extends React.Component {
             <p className={classes.linkText}>Profile</p>
           </Hidden>
         </IconButton>
+        </Target>        
+        <Popper
+            placement="bottom-start"
+            eventsEnabled={openLogout}
+            className={
+              classNames({ [classes.popperClose]: !openLogout }) +
+              " " +
+              classes.pooperResponsive
+            }
+          >
+            <ClickAwayListener onClickAway={this.handleLogoutClose}>
+              <Grow
+                in={openLogout}
+                id="logout"
+                style={{ transformOrigin: "0 0 0" }}
+              >
+                <Paper className={classes.dropdown}>
+                  <MenuList role="menu">
+                    <MenuItem
+                      onClick={this.onClick}
+                      className={classes.dropdownItem}
+                    >
+                      Logout
+                    </MenuItem>
+                  </MenuList>
+                </Paper>
+              </Grow>
+            </ClickAwayListener>
+          </Popper>
+          </Manager>
       </div>
     );
   }
 }
 
-export default withStyles(headerLinksStyle)(HeaderLinks);
+function mapDispatchToProps(dispatch) {  
+  return {
+    sessionActions: bindActionCreators(sessionActions, dispatch)
+  };
+}
+
+export default connect(null, mapDispatchToProps)(withStyles(headerLinksStyle)(HeaderLinks));

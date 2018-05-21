@@ -24,7 +24,7 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0"
   },
-  "proxy":"http://localhost:8080/PeraRide/v1",
+  "proxy":"http://159.89.238.212/PeraRide/v1",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

@@ -6,9 +6,7 @@ const loginFail = (message) => {
   return {type: types.LOG_IN_FAIL, message: message}
 }
 
-const clearAlert = () => {
-  return {type: types.CLEAR_ALERT}
-}
+
 export function logInUser(credentials) {  
   return function(dispatch) {
     return sessionApi.login(credentials).then(response => {
@@ -24,8 +22,10 @@ export function logInUser(credentials) {
     });
   };
 }
-export const clearAlertNotification = () =>{
-  return (dispatch) =>{
-    dispatch(clearAlert())
-  }
+
+export function logoutUser(credentials) {  
+  return function(dispatch) {
+    localStorage.removeItem('jwt');    
+    dispatch(push('/'));
+  };
 }

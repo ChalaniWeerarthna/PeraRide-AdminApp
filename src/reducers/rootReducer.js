@@ -1,8 +1,11 @@
 import {combineReducers} from 'redux';
-import session from './sessionReducer';
+import notification from './notificationReducer';
+import rider from './riderReducer';
+
 
 const rootReducer = combineReducers({
-    session
+    notification,
+    rider
 })
 
 export default rootReducer;

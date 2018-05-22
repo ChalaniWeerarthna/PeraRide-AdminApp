@@ -20,7 +20,7 @@ export function addRider(details) {
 
           if(response.riders){
             const res = response.riders.map((obj) => {
-              return [obj.rider_regNo,obj.rider_name.fName,obj.rider_name.lName, obj.rider_phoneNo, obj.rider_email]
+              return [obj.rider_regNo,obj.rider_firstName,obj.rider_lastName, obj.rider_phone, obj.rider_email]
             });        
             dispatch(updateRiders(res));        
           }else{        
@@ -42,10 +42,11 @@ export function getRiders() {
   return function(dispatch) {
 
     return riderApi.getAll().then(response => {    
-
+      console.log(response);
+      
       if(response.riders){
         const res = response.riders.map((obj) => {
-          return [obj.rider_regNo,obj.rider_name.fName,obj.rider_name.lName, obj.rider_phoneNo, obj.rider_email]
+          return [obj.rider_regNo,obj.rider_firstName,obj.rider_lastName, obj.rider_phone, obj.rider_email]
         });        
         dispatch(updateRiders(res));        
       }else{        

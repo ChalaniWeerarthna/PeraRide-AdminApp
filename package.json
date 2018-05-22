@@ -8,6 +8,7 @@
     "chartist": "^0.10.1",
     "classnames": "^2.2.5",
     "electron-is-dev": "^0.3.0",
+    "form-urlencoded": "^2.0.7",
     "material-ui": "1.0.0-beta.34",
     "material-ui-icons": "1.0.0-beta.17",
     "npm-run-all": "^4.1.1",

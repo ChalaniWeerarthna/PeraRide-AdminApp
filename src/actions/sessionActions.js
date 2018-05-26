@@ -10,9 +10,8 @@ const loginFail = (message) => {
 export function logInUser(credentials) {  
   return function(dispatch) {
     return sessionApi.login(credentials).then(response => {
-      const res = response;
-      if(res.res){
-        localStorage.setItem('jwt', res.jwt);
+      if(response.res){        
+        localStorage.setItem('jwt', response.token);
         dispatch(push('/'));
       }else{        
         dispatch(loginFail("Login Failed"));
@@ -24,7 +23,7 @@ export function logInUser(credentials) {
 }
 
 export function logoutUser(credentials) {  
-  return function(dispatch) {
+  return function(dispatch) {    
     localStorage.removeItem('jwt');    
     dispatch(push('/'));
   };

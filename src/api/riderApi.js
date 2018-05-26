@@ -5,15 +5,15 @@ class RiderApi {
       const request = new Request('/user/register', {
         method: 'POST',
         headers: new Headers({
-          'Content-Type': 'application/x-www-form-urlencoded'
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': localStorage.getItem('jwt')
         }), 
         body: formurlencoded({rider_regNo : details.regNo,
           rider_phone: details.phoneNo,
           rider_firstName:details.fName,
           rider_lastName:details.lName,
           rider_email: details.email,
-          rider_password: details.email,
-          token: localStorage.getItem('jwt')
+          rider_password: details.email
         })
       });
   
@@ -28,12 +28,10 @@ class RiderApi {
     static getAll() {      
       
       const request = new Request('/users', {
-        method: 'POST',
+        method: 'GET',
         headers: new Headers({
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }), 
-        body: formurlencoded({
-          token: localStorage.getItem('jwt')
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': localStorage.getItem('jwt')
         })
       });
   

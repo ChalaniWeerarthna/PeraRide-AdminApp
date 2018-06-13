@@ -8,6 +8,13 @@ export default function riderReducer(state = initialState.rider,action) {
         riders:action.riders
       }      
       return state
+    
+      case types.GET_CURRENT_USERS:
+      state = {...state,
+        currentUsers:action.currentUsers
+      }      
+      return state
+
     default: 
       return state;
   }

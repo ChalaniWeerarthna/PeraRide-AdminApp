@@ -13,12 +13,12 @@ class RiderApi {
           rider_firstName:details.fName,
           rider_lastName:details.lName,
           rider_email: details.email,
-          rider_password: details.email
+          rider_password: details.nic,
+          nic: details.nic
         })
       });
   
-  
-      return fetch(request).then(response => {        
+      return fetch(request).then(response => {                
         return response.json();
       }).catch(error => {
         throw error;
@@ -36,7 +36,24 @@ class RiderApi {
       });
   
       
-      return fetch(request).then(response => {                 
+      return fetch(request).then(response => {                         
+        return response.json();
+      }).catch(error => {
+        throw error;
+      });
+    } 
+
+    static getCurrentUsers() {      
+      
+      const request = new Request('/admin/currentusers', {
+        method: 'GET',
+        headers: new Headers({
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': localStorage.getItem('jwt')
+        })
+      });
+      
+      return fetch(request).then(response => {                         
         return response.json();
       }).catch(error => {
         throw error;

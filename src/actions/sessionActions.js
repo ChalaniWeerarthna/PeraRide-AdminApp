@@ -2,8 +2,8 @@ import sessionApi from 'api/sessionApi';
 import { push }      from 'react-router-redux';  
 import * as types from './actionTypes';  
 
-const loginFail = (message) => {  
-  return {type: types.LOG_IN_FAIL, message: message}
+const unsuccess = (message) => {  
+  return {type: types.UNSUCCESS, message: message}
 }
 
 
@@ -14,10 +14,10 @@ export function logInUser(credentials) {
         localStorage.setItem('jwt', response.token);
         dispatch(push('/'));
       }else{        
-        dispatch(loginFail("Login Failed"));
+        dispatch(unsuccess("Login Failed"));
       }
     }).catch(error => {
-      dispatch(loginFail("Problem with connection!"));
+      dispatch(unsuccess("Problem with the connection!"));
     });
   };
 }

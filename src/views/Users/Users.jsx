@@ -21,7 +21,7 @@ class Users extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      details: {regNo: '', phoneNo: '',fName: '', lName: '', email: ''},
+      details: {regNo: '', phoneNo: '',fName: '', lName: '', email: '', nic:''},
       successValidation: true
     }
     this.onChange = this.onChange.bind(this);
@@ -39,13 +39,13 @@ class Users extends React.Component {
     if(this.isValid()){
       event.preventDefault();
       this.props.riderActions.addRider(this.state.details);
-      this.setState({regNo: '', phoneNo: '',fName: '', lName: '', email: ''})
       setTimeout(
         function() {
           this.props.notificationActions.clearAlertNotification()
         }.bind(this),
         6000
       );
+      return this.setState({details: {regNo: '', phoneNo: '',fName: '', lName: '', email: '', nic:''}});
     }else{
       this.setState({successValidation: false});
     }        
@@ -56,9 +56,9 @@ class Users extends React.Component {
   }
 
   isValid = () =>{
-    const {regNo,phoneNo,fName,lName,email} = this.state.details;
+    const {regNo,phoneNo,fName,lName,email,nic} = this.state.details;
     if(regNo === '' || phoneNo === '' ||
-     fName === '' || lName === '' || email === ''){
+     fName === '' || lName === '' || email === '' ||  nic === ''){
       return false;
     }
     return true;
@@ -148,6 +148,22 @@ class Users extends React.Component {
                     <Grid container>
                       <ItemGrid md={12}>
                         <CustomInput
+                          labelText="ID number"
+                          error={!this.state.successValidation}   
+                          formControlProps={{
+                            fullWidth: true
+                          }}
+                          inputProps={{
+                            name: "nic",
+                            value: this.state.details.nic,
+                            onChange: this.onChange
+                          }}
+                        />
+                      </ItemGrid>
+                    </Grid>
+                    <Grid container>
+                      <ItemGrid md={12}>
+                        <CustomInput
                           labelText="Phone number"
                           error={!this.state.successValidation}          
                           formControlProps={{
@@ -184,7 +200,7 @@ class Users extends React.Component {
           content={
             <Table
               tableHeaderColor="primary"
-              tableHead={["Registration number","First Name","Last Name", "Phone number","Email"]}
+              tableHead={["Reg number","First Name","Last Name", "Phone number","Email","NIC"]}
               tableData={this.props.rider.riders}
             />
           }

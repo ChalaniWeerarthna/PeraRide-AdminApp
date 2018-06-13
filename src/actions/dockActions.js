@@ -1,25 +1,28 @@
 import dockApi from 'api/dockApi';
 import * as types from './actionTypes';  
 
-// const updateDockstations= (stations) => {  
-//   return {type: types.GET_DOCKS_SUCCESS, stations: stations}
-// }
-
 const success = (message) => {  
   return {type: types.SUCCESS_NOTIFICATION, message: message}
 }
 
+const unsuccess = (message) => {  
+  return {type: types.UNSUCCESS, message: message}
+}
 
-export function addDock(details) {  
+const updateDocks = (docks) => {  
+  return {type: types.GET_DOCKS_SUCCESS, docks: docks}
+}
+
+export function addStation(details) {  
   return function(dispatch) {
-    return dockApi.addDock(details).then(response => {
+    return dockApi.addStation(details).then(response => {
       const res = response;
-      if(res.res){  
+      if(res.res){
         dispatch(success("Successfully Added!"));
       }else{        
       }
     }).catch(error => {
-        throw error
+      dispatch(unsuccess("Problem with the connection!"));
     });
   };
 }
@@ -33,29 +36,29 @@ export function addLock(details) {
         }else{        
         }
       }).catch(error => {
-          throw error
+        dispatch(unsuccess("Problem with the connection!"));
       });
     };
   }
 
 
-// export function Docks() {  
+export function Docks() {  
 
-//   return function(dispatch) {
+  return function(dispatch) {
 
-//     return dockApi.getAll().then(response => {          
-//       if(response.riders){
-//         const res = response.riders.map((obj) => {
-//           return [obj.rider_regNo,obj.rider_firstName,obj.rider_lastName, obj.rider_phone, obj.rider_email]
-//         });        
-//         dispatch(updateRiders(res));        
-//       }else{        
-//       }
+    return dockApi.getDocks().then(response => {          
+      if(response.response){
+        const res = response.response.map((obj) => {
+          return [obj.name,`${obj.location.lat}`,`${obj.location.lon}`,`${obj.noOfBikes}`,`${obj.noOfEmpty}`]
+        });        
+        dispatch(updateDocks(res));        
+      }else{        
+      }
 
-//     }).catch(error => {
-//         throw error
-//     });
+    }).catch(error => {
+      dispatch(unsuccess("Problem with the connection!"));
+    });
 
-//   };
+  };
 
-// }
+}

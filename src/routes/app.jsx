@@ -2,7 +2,7 @@
 import Users from "views/Users/Users.jsx";
 import Docks from "views/Docks/Docks.jsx";
 // import Typography from "views/Typography/Typography.jsx";
-// import Maps from "views/Maps/Maps.jsx";
+import Maps from "views/Maps/Maps.jsx";
 // import NotificationsPage from "views/Notifications/Notifications.jsx";
 import Bikes from "views/Bikes/Bikes.jsx";
 
@@ -11,7 +11,7 @@ import {
   Person,
   BeachAccess,
   // LibraryBooks,
-  // LocationOn,
+  LocationOn,
   // Notifications,
   DirectionsBike
 } from "material-ui-icons";
@@ -52,13 +52,13 @@ const appRoutes = [
   //   icon: LibraryBooks,
   //   component: Typography
   // },
-  // {
-  //   path: "/map",
-  //   sidebarName: "Docks Map",
-  //   navbarName: "Docks Map",
-  //   icon: LocationOn,
-  //   component: Maps
-  // },
+  {
+    path: "/map",
+    sidebarName: "Map",
+    navbarName: "Map",
+    icon: LocationOn,
+    component: Maps
+  },
   // {
   //   path: "/notifications",
   //   sidebarName: "Notifications",

@@ -11,13 +11,18 @@ import { RegularCard, Table, ItemGrid, CustomInput, Button ,Snackbar} from "comp
     constructor(props) {
       super(props);
       this.state = {
-        details: {stationID1: '', lockID1: '',stationID2: '', lockID2: ''},
+        details: {stationID1: '', lockID1: '',stationID2: '', lockID2: '', lat: '', lon: '', dockName: ''},
         successValidation1: true,
         successValidation2: true        
       }
       this.onChange = this.onChange.bind(this);
       this.onSave = this.onSave.bind(this);
     }
+
+    componentWillMount() {
+      this.props.dockActions.Docks();      
+    }
+  
 
     onChange(event) {
       const field = event.target.name;
@@ -29,13 +34,14 @@ import { RegularCard, Table, ItemGrid, CustomInput, Button ,Snackbar} from "comp
     onSave(event) {
       if(this.isValid(event)){        
         event.preventDefault();
-        if(event.target.name === "addDock"){
-          this.props.dockActions.addDock({stationID:this.state.details.stationID1,lockID:this.state.details.lockID1 });
+        if(event.target.name === "addDock"){          
+          this.props.dockActions.addStation({stationID:this.state.details.stationID1,lockID:this.state.details.lockID1,
+          lat:this.state.details.lat ,lon:this.state.details.lon ,dockName:this.state.details.dockName });
         } else if(event.target.name === "addLock"){
           this.props.dockActions.addLock({stationID:this.state.details.stationID2,lockID:this.state.details.lockID2 });          
         }
 
-        this.setState({stationID1: '', lockID1: '',stationID2: '', lockID2: ''})
+        this.setState({stationID1: '', lockID1: '',stationID2: '', lockID2: '', lat: '', lon: '', dockName: '' })
         setTimeout(
           function() {
             this.props.notificationActions.clearAlertNotification()
@@ -47,8 +53,8 @@ import { RegularCard, Table, ItemGrid, CustomInput, Button ,Snackbar} from "comp
 
     isValid = (event) =>{      
       if(event.target.name === "addDock"){
-        const {stationID1,lockID1} = this.state.details;
-        if(stationID1 === '' || lockID1 === ''){
+        const {stationID1,lockID1,lat,lon,dockName} = this.state.details;
+        if(stationID1 === '' || lockID1 === '' ||  lat === '' || lon === '' || dockName === ''){
           this.setState({successValidation1: false});
           return false;
         }
@@ -113,6 +119,52 @@ import { RegularCard, Table, ItemGrid, CustomInput, Button ,Snackbar} from "comp
                             />
                           </ItemGrid>
                         </Grid>
+                        <Grid container>
+                          <ItemGrid md={12}>
+                            <CustomInput
+                              labelText="Dock Name"
+                              error={!this.state.successValidation1}   
+                              formControlProps={{
+                                fullWidth: true
+                              }}
+                              inputProps={{
+                                name: "dockName",
+                                value: this.state.details.dockName,
+                                onChange: this.onChange
+                              }}
+                            />
+                          </ItemGrid>
+                        </Grid>
+                        <Grid container>
+                          <ItemGrid md={6}>
+                            <CustomInput
+                              labelText="Latitude"
+                              error={!this.state.successValidation1}   
+                              formControlProps={{
+                                fullWidth: true
+                              }}
+                              inputProps={{
+                                name: "lat",
+                                value: this.state.details.lat,
+                                onChange: this.onChange
+                              }}
+                            />
+                          </ItemGrid>
+                          <ItemGrid md={6}>
+                            <CustomInput
+                              labelText="Longitude"
+                              error={!this.state.successValidation1}   
+                              formControlProps={{
+                                fullWidth: true
+                              }}
+                              inputProps={{
+                                name: "lon",
+                                value: this.state.details.lon,
+                                onChange: this.onChange
+                              }}
+                            />
+                          </ItemGrid>
+                          </Grid>
                         <Grid container justify='center'>
                           <ItemGrid md={6}>
                             <Button
@@ -188,8 +240,8 @@ import { RegularCard, Table, ItemGrid, CustomInput, Button ,Snackbar} from "comp
               content={
                 <Table
                   tableHeaderColor="primary"
-                  tableHead={[]}
-                  tableData={[]}
+                  tableHead={["Dock Name","Latitude" , "Longitude", "No. of available bikes", "No. of empty locks"]}
+                  tableData={this.props.dock.docks}
                 />
               }
             />
@@ -204,6 +256,7 @@ import { RegularCard, Table, ItemGrid, CustomInput, Button ,Snackbar} from "comp
   const mapStateToProps = (state) =>
   {
     return{
+      dock: state.dock,
       notification: state.notification
     }
   }

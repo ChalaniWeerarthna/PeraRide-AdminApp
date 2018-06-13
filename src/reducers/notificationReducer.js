@@ -4,7 +4,7 @@ import { ThumbUp } from "material-ui-icons";
 
 export default function notificationReducer(state = initialState.notification,action) {  
   switch(action.type) {
-    case types.LOG_IN_FAIL:
+    case types.UNSUCCESS:
       state = {...state,
         isNotify:true,
         message:action.message

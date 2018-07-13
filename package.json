@@ -1,6 +1,6 @@
 {
   "name": "peraride_admin",
-  "version": "0.1.0",
+  "version": "0.9.1",
   "author": "Shyaman Jayasundara",
   "private": true,
   "main": "public/electron.js",
@@ -27,7 +27,7 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.3.0"
   },
-  "proxy": "http://localhost:8080/PeraRide/v1",
+  "proxy": "PERARIDE SERVER ADDRESS",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

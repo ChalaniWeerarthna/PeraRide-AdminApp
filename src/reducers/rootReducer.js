@@ -1,8 +1,15 @@
 import {combineReducers} from 'redux';
-import session from './sessionReducer';
+import notification from './notificationReducer';
+import rider from './riderReducer';
+import gmap from './mapReducer';
+import dock from './dockReducer';
+
 
 const rootReducer = combineReducers({
-    session
+    notification,
+    rider,
+    gmap,
+    dock
 })
 
 export default rootReducer;

@@ -1,11 +1,13 @@
+import formurlencoded from "form-urlencoded";
+
 class SessionApi {  
     static login(credentials) {
-      const request = new Request('/user/login/admin', {
+      const request = new Request('/login/admin', {
         method: 'POST',
         headers: new Headers({
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/x-www-form-urlencoded'
         }), 
-        body: JSON.stringify({admin_username: credentials.email,admin_password: credentials.password })
+        body: formurlencoded({admin_username: credentials.email,admin_password: credentials.password })
       });
   
   

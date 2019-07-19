@@ -1,9 +1,9 @@
 import React from "react";
 import { Grid } from "material-ui";
-import {connect} from 'react-redux';  
-import {bindActionCreators} from 'redux';  
-import { RegularCard, Table, ItemGrid, Snackbar } from "components";
-import * as riderActions from 'actions/riderActions';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import { RegularCard, Table, ItemGrid, Snackbar } from "../../components";
+import * as riderActions from '../../actions/riderActions';
 
 class Bikes extends React.Component {
 
@@ -79,7 +79,7 @@ const mapStateToProps = (state) =>
     }
   }
 
-function mapDispatchToProps(dispatch) {  
+function mapDispatchToProps(dispatch) {
   return {
     riderActions: bindActionCreators(riderActions, dispatch),
   };

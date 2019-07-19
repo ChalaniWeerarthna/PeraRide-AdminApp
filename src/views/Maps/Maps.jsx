@@ -6,7 +6,7 @@ import {
   Marker
 } from "react-google-maps";
 import { connect } from 'react-redux';
-import * as mapActions from 'actions/mapActions';
+import * as mapActions from '../../actions/mapActions';
 import { bindActionCreators } from 'redux';
 
 
@@ -20,7 +20,7 @@ const CustomSkinMap = withScriptjs(
         zoomControl: true,
       }}
     >
-    
+
 
     }
       {Object.keys(props.markers).map((key,index) => {
@@ -33,7 +33,7 @@ const CustomSkinMap = withScriptjs(
 
 class Maps extends React.Component {
 
-  componentWillMount() {    
+  componentWillMount() {
     this.props.mapActions.getMap();
   }
 

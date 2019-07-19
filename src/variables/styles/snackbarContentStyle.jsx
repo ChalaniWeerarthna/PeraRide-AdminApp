@@ -9,7 +9,7 @@ import {
   successBoxShadow,
   warningBoxShadow,
   dangerBoxShadow
-} from "variables/styles.jsx";
+} from "../../variables/styles.jsx";
 
 const snackbarContentStyle = {
   root: {

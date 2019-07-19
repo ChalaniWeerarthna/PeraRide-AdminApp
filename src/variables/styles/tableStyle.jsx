@@ -11,7 +11,7 @@ import {
   roseColor,
   grayColor,
   defaultFont
-} from "variables/styles";
+} from "../../variables/styles";
 
 const tableStyle = theme => ({
   warningTableHeader: {

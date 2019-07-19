@@ -6,14 +6,14 @@ import PerfectScrollbar from "perfect-scrollbar";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 import { withStyles } from "material-ui";
 
-import { Header, Sidebar } from "components";
+import { Header, Sidebar } from "../../components";
 
-import appRoutes from "routes/app.jsx";
+import appRoutes from "../../routes/app.jsx";
 
-import appStyle from "variables/styles/appStyle.jsx";
+import appStyle from "../../variables/styles/appStyle.jsx";
 
-import image from "assets/img/sidebar-1.jpg";
-import logo from "assets/img/reactlogo.png";
+import image from "../../assets/img/sidebar-1.jpg";
+import logo from "../../assets/img/reactlogo.png";
 
 const switchRoutes = (
   <Switch>

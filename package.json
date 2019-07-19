@@ -27,7 +27,7 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.3.0"
   },
-  "proxy": "PERARIDE SERVER ADDRESS",
+  "proxy": "http://localhost:4000/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

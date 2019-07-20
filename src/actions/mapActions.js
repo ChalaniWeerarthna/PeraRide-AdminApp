@@ -1,4 +1,4 @@
-import mapApi from 'api/mapApi';
+import mapApi from '../api/mapApi';
 import * as types from './actionTypes';
 
 const updateMap = (markers) => {

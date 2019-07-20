@@ -1,10 +1,10 @@
 import React from "react";
 import { Grid } from "material-ui";
-import * as dockActions from 'actions/dockActions';
-import * as notificationActions from 'actions/notificationActions';
-import {connect} from 'react-redux';  
-import {bindActionCreators} from 'redux'; 
-import { RegularCard, Table, ItemGrid, CustomInput, Button ,Snackbar} from "components";
+import * as dockActions from '../../actions/dockActions';
+import * as notificationActions from '../../actions/notificationActions';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import { RegularCard, Table, ItemGrid, CustomInput, Button ,Snackbar} from "../../components";
 
   class Docks extends React.Component {
 
@@ -13,32 +13,32 @@ import { RegularCard, Table, ItemGrid, CustomInput, Button ,Snackbar} from "comp
       this.state = {
         details: {stationID1: '', lockID1: '',stationID2: '', lockID2: '', lat: '', lon: '', dockName: ''},
         successValidation1: true,
-        successValidation2: true        
+        successValidation2: true
       }
       this.onChange = this.onChange.bind(this);
       this.onSave = this.onSave.bind(this);
     }
 
     componentWillMount() {
-      this.props.dockActions.Docks();      
+      this.props.dockActions.Docks();
     }
-  
+
 
     onChange(event) {
       const field = event.target.name;
       const details = this.state.details;
-      details[field] = event.target.value;        
+      details[field] = event.target.value;
       return this.setState({details: details});
     }
 
     onSave(event) {
-      if(this.isValid(event)){        
+      if(this.isValid(event)){
         event.preventDefault();
-        if(event.target.name === "addDock"){          
+        if(event.target.name === "addDock"){
           this.props.dockActions.addStation({stationID:this.state.details.stationID1,lockID:this.state.details.lockID1,
           lat:this.state.details.lat ,lon:this.state.details.lon ,dockName:this.state.details.dockName });
         } else if(event.target.name === "addLock"){
-          this.props.dockActions.addLock({stationID:this.state.details.stationID2,lockID:this.state.details.lockID2 });          
+          this.props.dockActions.addLock({stationID:this.state.details.stationID2,lockID:this.state.details.lockID2 });
         }
 
         this.setState({stationID1: '', lockID1: '',stationID2: '', lockID2: '', lat: '', lon: '', dockName: '' })
@@ -48,10 +48,10 @@ import { RegularCard, Table, ItemGrid, CustomInput, Button ,Snackbar} from "comp
           }.bind(this),
           6000
         );
-      }     
+      }
     }
 
-    isValid = (event) =>{      
+    isValid = (event) =>{
       if(event.target.name === "addDock"){
         const {stationID1,lockID1,lat,lon,dockName} = this.state.details;
         if(stationID1 === '' || lockID1 === '' ||  lat === '' || lon === '' || dockName === ''){
@@ -67,7 +67,7 @@ import { RegularCard, Table, ItemGrid, CustomInput, Button ,Snackbar} from "comp
         }
         return true;
       }
-      
+
     }
 
     render(){
@@ -93,7 +93,7 @@ import { RegularCard, Table, ItemGrid, CustomInput, Button ,Snackbar} from "comp
                           <ItemGrid md={6}>
                             <CustomInput
                               labelText="Dock station ID"
-                              error={!this.state.successValidation1}   
+                              error={!this.state.successValidation1}
                               formControlProps={{
                                 fullWidth: true
                               }}
@@ -107,7 +107,7 @@ import { RegularCard, Table, ItemGrid, CustomInput, Button ,Snackbar} from "comp
                           <ItemGrid md={6}>
                             <CustomInput
                               labelText="Lock ID"
-                              error={!this.state.successValidation1}   
+                              error={!this.state.successValidation1}
                               formControlProps={{
                                 fullWidth: true
                               }}
@@ -123,7 +123,7 @@ import { RegularCard, Table, ItemGrid, CustomInput, Button ,Snackbar} from "comp
                           <ItemGrid md={12}>
                             <CustomInput
                               labelText="Dock Name"
-                              error={!this.state.successValidation1}   
+                              error={!this.state.successValidation1}
                               formControlProps={{
                                 fullWidth: true
                               }}
@@ -139,7 +139,7 @@ import { RegularCard, Table, ItemGrid, CustomInput, Button ,Snackbar} from "comp
                           <ItemGrid md={6}>
                             <CustomInput
                               labelText="Latitude"
-                              error={!this.state.successValidation1}   
+                              error={!this.state.successValidation1}
                               formControlProps={{
                                 fullWidth: true
                               }}
@@ -153,7 +153,7 @@ import { RegularCard, Table, ItemGrid, CustomInput, Button ,Snackbar} from "comp
                           <ItemGrid md={6}>
                             <CustomInput
                               labelText="Longitude"
-                              error={!this.state.successValidation1}   
+                              error={!this.state.successValidation1}
                               formControlProps={{
                                 fullWidth: true
                               }}
@@ -191,7 +191,7 @@ import { RegularCard, Table, ItemGrid, CustomInput, Button ,Snackbar} from "comp
                           <ItemGrid md={6}>
                             <CustomInput
                               labelText="Dock station ID"
-                              error={!this.state.successValidation2}   
+                              error={!this.state.successValidation2}
                               formControlProps={{
                                 fullWidth: true
                               }}
@@ -205,7 +205,7 @@ import { RegularCard, Table, ItemGrid, CustomInput, Button ,Snackbar} from "comp
                           <ItemGrid md={6}>
                             <CustomInput
                               labelText="Lock ID"
-                              error={!this.state.successValidation2}   
+                              error={!this.state.successValidation2}
                               formControlProps={{
                                 fullWidth: true
                               }}
@@ -249,8 +249,8 @@ import { RegularCard, Table, ItemGrid, CustomInput, Button ,Snackbar} from "comp
         </Grid>
       </div>
       );
-      
-  } 
+
+  }
   }
 
   const mapStateToProps = (state) =>
@@ -261,13 +261,13 @@ import { RegularCard, Table, ItemGrid, CustomInput, Button ,Snackbar} from "comp
     }
   }
 
-function mapDispatchToProps(dispatch) {  
+function mapDispatchToProps(dispatch) {
   return {
     dockActions: bindActionCreators(dockActions, dispatch),
-    notificationActions: bindActionCreators(notificationActions, dispatch)    
+    notificationActions: bindActionCreators(notificationActions, dispatch)
   };
 }
-  
-  
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Docks);

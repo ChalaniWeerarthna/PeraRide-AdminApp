@@ -8,7 +8,7 @@ import {
 } from "material-ui";
 import PropTypes from "prop-types";
 
-import profileCardStyle from "variables/styles/profileCardStyle";
+import profileCardStyle from "../../variables/styles/profileCardStyle";
 
 function ProfileCard({ ...props }) {
   const { classes, subtitle, title, description, avatar } = props;

@@ -23,7 +23,7 @@ import {
   RegularCard,
   Table,
   ItemGrid
-} from "../../components";
+} from "components";
 
 import {
   dailySalesChart,

@@ -2,7 +2,7 @@
 // // // Tasks styles
 // #############################
 
-import { defaultFont, primaryColor, dangerColor } from "../../variables/styles";
+import { defaultFont, primaryColor, dangerColor } from "variables/styles";
 
 const tasksStyle = {
   table: {

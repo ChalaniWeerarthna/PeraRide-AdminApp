@@ -10,7 +10,7 @@ import {
   successColor,
   warningColor,
   dangerColor
-} from "../../variables/styles";
+} from "variables/styles";
 
 const buttonStyle = {
   button: {

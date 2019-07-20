@@ -1,19 +1,19 @@
-import sessionApi from '../api/sessionApi';
-import { push }      from 'react-router-redux';
-import * as types from './actionTypes';
+import sessionApi from 'api/sessionApi';
+import { push }      from 'react-router-redux';  
+import * as types from './actionTypes';  
 
-const unsuccess = (message) => {
+const unsuccess = (message) => {  
   return {type: types.UNSUCCESS, message: message}
 }
 
 
-export function logInUser(credentials) {
+export function logInUser(credentials) {  
   return function(dispatch) {
     return sessionApi.login(credentials).then(response => {
-      if(response.res){
+      if(response.res){        
         localStorage.setItem('jwt', response.token);
         dispatch(push('/'));
-      }else{
+      }else{        
         dispatch(unsuccess("Login Failed"));
       }
     }).catch(error => {
@@ -22,9 +22,9 @@ export function logInUser(credentials) {
   };
 }
 
-export function logoutUser(credentials) {
-  return function(dispatch) {
-    localStorage.removeItem('jwt');
+export function logoutUser(credentials) {  
+  return function(dispatch) {    
+    localStorage.removeItem('jwt');    
     dispatch(push('/'));
   };
 }

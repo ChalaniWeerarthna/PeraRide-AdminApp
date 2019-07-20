@@ -1,8 +1,8 @@
-import React from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import  * as sessionActions from '../../actions/sessionActions';
-import * as notificationActions from '../../actions/notificationActions';
+import React from 'react';  
+import {bindActionCreators} from 'redux';  
+import {connect} from 'react-redux';  
+import  * as sessionActions from 'actions/sessionActions';
+import * as notificationActions from 'actions/notificationActions';
 import { Grid } from "material-ui";
 import {
   RegularCard,
@@ -10,12 +10,12 @@ import {
   ItemGrid,
   Button,
   Snackbar
-} from "../../components";
+} from "components";
 import { Fingerprint } from "material-ui-icons";
 
 
 
-class LogInPage extends React.Component {
+class LogInPage extends React.Component {  
   constructor(props) {
     super(props);
     this.state = {
@@ -29,7 +29,7 @@ class LogInPage extends React.Component {
   onChange(event) {
     const field = event.target.name;
     const credentials = this.state.credentials;
-    credentials[field] = event.target.value;
+    credentials[field] = event.target.value;    
     return this.setState({credentials: credentials});
   }
 
@@ -39,7 +39,7 @@ class LogInPage extends React.Component {
       this.props.sessionActions.logInUser(this.state.credentials);
     }else{
       this.setState({successValidation: false});
-    }
+    }        
   }
 
   isValid = () =>{
@@ -53,9 +53,9 @@ class LogInPage extends React.Component {
   render() {
     return (
       < div >
-
-        <Grid
-          container
+      
+        <Grid 
+          container 
           justify='center'
           alignItems='center'
           style={{height: 600}}>
@@ -78,7 +78,7 @@ class LogInPage extends React.Component {
                     <ItemGrid md={12}>
                       <CustomInput
                         labelText="Username"
-                        error={!this.state.successValidation}
+                        error={!this.state.successValidation}   
                         formControlProps={{
                           fullWidth: true
                         }}
@@ -94,7 +94,7 @@ class LogInPage extends React.Component {
                     <ItemGrid md={12}>
                       <CustomInput
                         labelText="Password"
-                        error={!this.state.successValidation}
+                        error={!this.state.successValidation}          
                         formControlProps={{
                           fullWidth: true
                         }}
@@ -135,10 +135,10 @@ const mapStateToProps = (state) =>
     }
   }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {  
   return {
     sessionActions: bindActionCreators(sessionActions, dispatch),
-    notificationActions: bindActionCreators(notificationActions, dispatch)
+    notificationActions: bindActionCreators(notificationActions, dispatch)    
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(LogInPage);

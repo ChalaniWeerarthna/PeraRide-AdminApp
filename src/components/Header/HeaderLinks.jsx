@@ -1,9 +1,9 @@
 import React from "react";
 import classNames from "classnames";
-import {bindActionCreators} from 'redux';
+import {bindActionCreators} from 'redux';  
 import { Manager, Target, Popper } from "react-popper";
-import {connect} from 'react-redux';
-import  * as sessionActions from '../../actions/sessionActions';
+import {connect} from 'react-redux';  
+import  * as sessionActions from 'actions/sessionActions';
 import {
   withStyles,
   IconButton,
@@ -16,9 +16,9 @@ import {
 } from "material-ui";
 import { Person, Dashboard, Search } from "material-ui-icons";
 
-import { CustomInput, IconButton as SearchButton } from "../../components";
+import { CustomInput, IconButton as SearchButton } from "components";
 
-import headerLinksStyle from "../../variables/styles/headerLinksStyle";
+import headerLinksStyle from "variables/styles/headerLinksStyle";
 
 class HeaderLinks extends React.Component {
   state = {
@@ -75,9 +75,9 @@ class HeaderLinks extends React.Component {
         <IconButton
           color="inherit"
           aria-label="Person"
-          aria-haspopup="true"
-          onClick={this.handleLogoutClick}
-          aria-owns={openLogout ? "logout" : null}
+          aria-haspopup="true" 
+          onClick={this.handleLogoutClick}          
+          aria-owns={openLogout ? "logout" : null}                   
           className={classes.buttonLink}
         >
           <Person className={classes.links} />
@@ -85,7 +85,7 @@ class HeaderLinks extends React.Component {
             <p className={classes.linkText}>Profile</p>
           </Hidden>
         </IconButton>
-        </Target>
+        </Target>        
         <Popper
             placement="bottom-start"
             eventsEnabled={openLogout}
@@ -120,7 +120,7 @@ class HeaderLinks extends React.Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {  
   return {
     sessionActions: bindActionCreators(sessionActions, dispatch)
   };

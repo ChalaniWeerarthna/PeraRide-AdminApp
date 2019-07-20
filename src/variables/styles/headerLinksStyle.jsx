@@ -7,7 +7,7 @@ import {
   dangerColor,
   primaryColor,
   primaryBoxShadow
-} from "../../variables/styles";
+} from "variables/styles";
 
 const headerLinksStyle = theme => ({
   popperClose: {

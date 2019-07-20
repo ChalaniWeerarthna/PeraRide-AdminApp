@@ -11,11 +11,11 @@ import {
 } from "material-ui";
 import { BugReport, Code, Cloud } from "material-ui-icons";
 
-import { Tasks } from "../../components";
+import { Tasks } from "components";
 
-import { bugs, website, server } from "../../variables/general";
+import { bugs, website, server } from "variables/general";
 
-import tasksCardStyle from "../../variables/styles/tasksCardStyle";
+import tasksCardStyle from "variables/styles/tasksCardStyle";
 
 class TasksCard extends React.Component {
   state = {

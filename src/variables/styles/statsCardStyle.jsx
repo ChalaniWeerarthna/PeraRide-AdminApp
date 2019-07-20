@@ -19,7 +19,7 @@ import {
   infoColor,
   primaryColor,
   roseColor
-} from "../../variables/styles";
+} from "variables/styles";
 
 const statsCardStyle = {
   card,

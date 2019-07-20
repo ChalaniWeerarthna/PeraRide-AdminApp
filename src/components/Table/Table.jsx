@@ -10,7 +10,7 @@ import {
 
 import PropTypes from "prop-types";
 
-import tableStyle from "../../variables/styles/tableStyle";
+import tableStyle from "variables/styles/tableStyle";
 
 function CustomTable({ ...props }) {
   const { classes, tableHead, tableData, tableHeaderColor } = props;

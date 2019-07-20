@@ -1,9 +1,9 @@
 import React from "react";
 import { Grid } from "material-ui";
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as riderActions from '../../actions/riderActions';
-import * as notificationActions from '../../actions/notificationActions';
+import {connect} from 'react-redux';  
+import {bindActionCreators} from 'redux';  
+import * as riderActions from 'actions/riderActions';
+import * as notificationActions from 'actions/notificationActions';
 
 
 import {
@@ -13,7 +13,7 @@ import {
   Button,
   Snackbar,
   Table
-} from "../../components";
+} from "components";
 
 
 class Users extends React.Component {
@@ -31,7 +31,7 @@ class Users extends React.Component {
   onChange(event) {
     const field = event.target.name;
     const details = this.state.details;
-    details[field] = event.target.value;
+    details[field] = event.target.value;        
     return this.setState({details: details});
   }
 
@@ -48,7 +48,7 @@ class Users extends React.Component {
       return this.setState({details: {regNo: '', phoneNo: '',fName: '', lName: '', email: '', nic:''}});
     }else{
       this.setState({successValidation: false});
-    }
+    }        
   }
 
   componentWillMount() {
@@ -87,7 +87,7 @@ class Users extends React.Component {
                       <ItemGrid md={12}>
                         <CustomInput
                           labelText="Registration Number"
-                          error={!this.state.successValidation}
+                          error={!this.state.successValidation}   
                           formControlProps={{
                             fullWidth: true
                           }}
@@ -103,7 +103,7 @@ class Users extends React.Component {
                       <ItemGrid md={6}>
                         <CustomInput
                           labelText="First Name"
-                          error={!this.state.successValidation}
+                          error={!this.state.successValidation}   
                           formControlProps={{
                             fullWidth: true
                           }}
@@ -117,7 +117,7 @@ class Users extends React.Component {
                       <ItemGrid md={6}>
                         <CustomInput
                           labelText="Last Name"
-                          error={!this.state.successValidation}
+                          error={!this.state.successValidation}   
                           formControlProps={{
                             fullWidth: true
                           }}
@@ -133,7 +133,7 @@ class Users extends React.Component {
                       <ItemGrid md={12}>
                         <CustomInput
                           labelText="Email address"
-                          error={!this.state.successValidation}
+                          error={!this.state.successValidation}   
                           formControlProps={{
                             fullWidth: true
                           }}
@@ -149,7 +149,7 @@ class Users extends React.Component {
                       <ItemGrid md={12}>
                         <CustomInput
                           labelText="ID number"
-                          error={!this.state.successValidation}
+                          error={!this.state.successValidation}   
                           formControlProps={{
                             fullWidth: true
                           }}
@@ -165,7 +165,7 @@ class Users extends React.Component {
                       <ItemGrid md={12}>
                         <CustomInput
                           labelText="Phone number"
-                          error={!this.state.successValidation}
+                          error={!this.state.successValidation}          
                           formControlProps={{
                             fullWidth: true
                           }}
@@ -220,10 +220,10 @@ const mapStateToProps = (state) =>
     }
   }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {  
   return {
     riderActions: bindActionCreators(riderActions, dispatch),
-    notificationActions: bindActionCreators(notificationActions, dispatch)
+    notificationActions: bindActionCreators(notificationActions, dispatch)    
   };
 }
 

@@ -7,7 +7,7 @@ import {
   cardHeader,
   defaultFont,
   primaryBoxShadow
-} from "../../variables/styles";
+} from "variables/styles";
 
 const tasksCardStyle = theme => ({
   card,

@@ -6,9 +6,9 @@ import {
   RegularCard,
   CustomInput,
   ItemGrid
-} from "../../components";
+} from "components";
 
-import avatar from "../../assets/img/faces/marc.jpg";
+import avatar from "assets/img/faces/marc.jpg";
 
 function UserProfile({ ...props }) {
   return (
@@ -129,7 +129,7 @@ function UserProfile({ ...props }) {
             subtitle="CEO / CO-FOUNDER"
             title="Alec Thompson"
             description="Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is..."
-
+            
           />
         </ItemGrid>
       </Grid>

@@ -12,9 +12,9 @@ import {
   ListItemText
 } from "material-ui";
 
-import { HeaderLinks } from "../../components";
+import { HeaderLinks } from "components";
 
-import sidebarStyle from "../../variables/styles/sidebarStyle.jsx";
+import sidebarStyle from "variables/styles/sidebarStyle.jsx";
 
 const Sidebar = ({ ...props }) => {
   // verifies if routeName is the one active (in browser input)
